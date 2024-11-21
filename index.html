@@ -488,7 +488,6 @@
         <h1>MJ</h1>
         <small>International</small>
     </header>
-    <a href="https://median.dev/library-ready"> Tesing Android api</a>
     <main>
         <section id="from" >   
             <div id="from-title" accordian>
@@ -691,7 +690,8 @@
         </tbody>
     </table>
 
-
+<script src="app/src/main/assets/GoNativeJSBridgeLibrary.js"></script>
+<script src="plugins/pluginName/src/main/assets"></script>
 
     <script>
         function inputReserve(e) {
@@ -737,7 +737,8 @@
         function printBtn(e) {
             var elem = e.target.closest('#print-btn');
             if (elem) {
-                gonative.share.sharePage();
+                window.location.href="https://median.dev/library-ready";
+                // gonative.share.sharePage();
                 elem.innerText="Printing";
                 window.print();
             }
