@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice MJ</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family:  Helvetica, Arial, sans-serif;
+        }
+        header{
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column; 
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1{
+            color: rgb(233, 73, 15);
+            font-size: 60px;
+            line-height: 50px;
+        }
+        header small{
+            font-size: 16px;
+            background-color: rgb(233, 73, 15);
+            color: white;
+            padding: 0 10px;
+            border-radius: 3px;
+            letter-spacing:2px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        main{
+            padding: 0 20px;
+        }
+        #from{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 5px;
+        }
+        textarea{
+            width:90%;
+            background-color: rgb(232, 242, 246); 
+            padding: 3px 4px;
+            border-radius: 3px;
+            margin-top: 3px;
+            color: grey;
+            font-size: 14px;
+            border: yellowgreen solid 1px;
+        }
+        *[contenteditable]{
+         background-color: rgb(232, 242, 246); 
+         padding: 4px 6px;
+         border-radius: 3px;
+         margin-top: 3px;
+         font-size: 12px;
+         border: yellowgreen solid 1px;
+         width: 240px;
+        }
+        .from-select{
+         background-color: rgb(232, 242, 246); 
+         padding: 4px 6px;
+         border-radius: 3px;
+         margin-top: 3px;
+         font-size: 12px;
+         border: yellowgreen solid 1px;
+         width: 240px;
+        }
+        .from-title{
+            font-weight: bold;
+            font-size: 14px;
+        }
+        #from-title{
+            font-weight: bold;
+            font-size: 14px;
+            text-align: start;
+            background-color:  rgb(233, 73, 15);
+            color: white;
+            padding: 8px 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        #from-name{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #from-address{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #from-city{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #from-country{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #from-phone{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #to{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 5px;
+        }
+        #to-title{
+            font-weight: bold;
+            font-size: 14px;
+            text-align: start;
+            background-color:  rgb(233, 73, 15);
+            color: white;
+            padding: 8px 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        #to-name{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #to-address{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #to-city{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #to-country{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #to-phone{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #to-zip{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #to-state{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #to-mobile{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #details{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 5px;
+        }
+        #details-title{
+            font-weight: bold;
+            font-size: 14px;
+            text-align: start;
+            background-color:  rgb(233, 73, 15);
+            color: white;
+            padding: 8px 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        #details-insurance{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #details-service{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #discription{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            padding-bottom: 5px;
+        }
+        #discription-title{
+            font-weight: bold;
+            font-size: 14px;
+            text-align: start;
+            background-color:  rgb(233, 73, 15);
+            color: white;
+            padding: 8px 10px;
+            width: 100%;
+            margin: 10px 0;
+        }
+        #details-content{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        small[contenteditable="true"]:empty:before {
+            content: attr(data-placeholder);
+            color: #888; 
+            font-size: 12px;
+        }
+        label{
+            font-size: 16px;
+        }
+        #radio-btn{
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: center;
+        }
+        #from-parent, #to-parent {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            opacity: 1; 
+            max-height: 1000px;
+            overflow: hidden; 
+            transition: opacity 0.2s ease-in-out, max-height 0.4s ease-in-out;
+        }
+        #print-btn{
+            padding:3px 20px;
+            color: black;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            background-color: rgb(232, 242, 246);
+            margin-bottom: 20px;
+            box-shadow: inset 0px 0px 4px 0px grey;
+        }
+        #invoice{
+            width: 400px;
+            display: none;
+        }
+        #invoice-logo{
+            text-align: center;
+        }
+        #invoice-logo h1{
+            color: black;
+            font-size: 60px;
+            line-height: 50px;
+        }
+        #invoice-logo small{
+            font-size: 16px;
+            background-color: black;
+            color: white;
+            padding: 0 10px;
+            border-radius: 3px;
+            letter-spacing:2px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+        .title-bg{
+            background-color: black;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 3px;
+            letter-spacing:1px;
+
+        }
+        table{
+            border-spacing: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MJ</h1>
+        <small>International</small>
+    </header>
+    <main>
+        <section id="from" >   
+            <div id="from-title" accordian>
+                SHIPPER
+            </div>  
+            <div id="from-parent">  
+            <div id="from-name">
+                <strong class="from-title">Name:</strong>
+                <input id="shipper_name" type="text" class="from-select" placeholder="Name..." inputReserve>
+            </div>
+            <div id="from-address">
+                <strong class="from-title">Address:</strong>
+                <small id="shipper_address" contenteditable="true" data-placeholder="Address..." inputReserve></small>
+            </div>
+            <div id="from-city">
+                <strong class="from-title">City:</strong>
+                <input id="shipper_city" type="text" class="from-select" placeholder="City..." inputReserve>
+            </div>
+            <div id="from-country">
+                <strong class="from-title">Country:</strong>
+                <input id="shipper_country" type="text" class="from-select" placeholder="Country..." inputReserve>
+            </div>
+            <div id="from-phone">
+                <strong class="from-title">Phone:</strong>
+                <input id="shipper_phone" type="text" class="from-select" placeholder="Phone..." inputReserve>
+            </div>
+            </div>
+        </section>
+        <section id="to" >   
+            <div id="to-title" accordian>
+                CONSIGNEE
+            </div>
+            <div id="to-parent">  
+            <div id="to-name">
+                <strong class="from-title">Name:</strong>
+                <input id="consignee_name" type="text" class="from-select" placeholder="Name..." inputReserve>
+            </div>
+            <div id="to-address">
+                <strong class="from-title">Address:</strong>
+                <small id="consignee_address" data-placeholder="Address..." contenteditable="true" inputReserve></small>
+            </div>
+            <div id="to-city">
+                <strong class="from-title">City:</strong>
+                <input id="consignee_city" type="text" class="from-select" placeholder="City..." inputReserve>
+            </div>
+            <div id="to-country">
+                <strong class="from-title">Country:</strong>
+                <input id="consignee_country" type="text" class="from-select" placeholder="Country..." inputReserve>
+            </div>
+            <div id="to-phone">
+                <strong class="from-title">Phone:</strong>
+                <input id="consignee_phone" type="text" class="from-select" placeholder="Phone..." inputReserve>
+            </div>
+            <div id="to-zip">
+                <strong class="from-title">ZIP Code:</strong>
+                <input id="consignee_zip" type="text" class="from-select" placeholder="Zip..." inputReserve>
+            </div>
+            <div id="to-state">
+                <strong class="from-title">State:</strong>
+                <input id="consignee_state" type="text" class="from-select" placeholder="State..." inputReserve>
+            </div>
+            <div id="to-mobile">
+                <strong class="from-title">Mobile:</strong>
+                <input id="consignee_mobile" type="text" class="from-select" placeholder="Mobile..." inputReserve>
+            </div>
+        </div>
+        </section>
+        <section id="details">
+            <div id="details-title">
+                SHIPMENT DETAILS
+            </div>
+            <div id="details-service">
+                <strong class="from-title">Service:</strong>
+                <select id="select_service" contenteditable="true" inputchange>
+                    <option value="Cash">Cash</option>
+                    <option value="Credit">Credit</option>
+                    <option value="Document">Document</option>
+                    <option value="Express Parcel">Express Parcel</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div id="details-insurance">
+                <strong class="from-title">Insurance:</strong>
+                <select id="select_insurance" contenteditable="true" inputchange>
+                    <option value="No">NO</option>
+                    <option value="Yes">YES</option>
+                </select>
+            </div>
+        </section>
+        <section id="discription">
+            <div id="discription-title">
+                DISCRIPTION OF CONTENT
+            </div>
+            <div id="discription-content">
+                <textarea name="" rows="4" id="input_description" placeholder="Enter description here..." inputReserve></textarea>
+            </div>
+            <div id="print-btn">
+                <span onclick="window.print()">Print</span>
+            </div>
+        </section>
+    </main>
+
+    <table id="invoice" >
+        <thead>
+            <tr>
+                <td colspan="2" id="invoice-logo">
+                    <h1>MJ</h1>
+                    <small>International</small>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="title-bg">SHIPPER</td>
+            </tr>
+            <tr>
+                <td><strong>Name: </strong></td>
+                <td id="shipper_name_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>City:</strong></td>
+                <td id="shipper_city_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>Country:</strong></td>
+                <td id="shipper_country_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>Phone:</strong></td>
+                <td id="shipper_phone_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>Address:</strong></td>
+                <td id="shipper_address_inv"></td>
+            </tr>
+            <tr>
+                <td class="title-bg">CONSIGNEE</td>
+            </tr>
+            <tr>
+                <td><strong>Name: </strong></td>
+                <td id="consignee_name_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>City:</strong></td>
+                <td id="consignee_city_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>Country:</strong></td>
+                <td id="consignee_country_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>Phone:</strong></td>
+                <td id="consignee_phone_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>ZIP Code:</strong></td>
+                <td id="consignee_zip_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>State:</strong></td>
+                <td id="consignee_state_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>Mobile:</strong></td>
+                <td id="consignee_mobile_inv"></td>
+            </tr>
+            <tr>
+                <td><strong>Address:</strong></td>
+                <td id="consignee_address_inv"></td>
+            </tr>
+            <tr>
+                <td colspan="2" ><span class="title-bg">SHIPMENT DETAILS</span></td>
+            </tr>
+            <tr>
+                <td><strong>Service: </strong></td>
+                <td id="select_service_inv">cash</td>
+            </tr>
+            <tr>
+                <td><strong>Insurance:</strong></td>
+                <td id="select_insurance_inv">No</td>
+            </tr>
+            <tr>
+                <td class="title-bg">DESCRIPTION</td>
+            </tr>
+            <tr>
+                <td colspan="2" id="input_description_inv"></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <script>
+        function inputReserve(e) {
+            var elem = e.target.closest('[inputReserve]');
+            if (elem) {
+                let id = elem.id;
+                let name = document.getElementById(id+ '_inv');
+                if(elem.tagName === 'SMALL') {
+                    name.innerHTML = elem.innerHTML;
+                }else{
+                    name.innerHTML = elem.value;
+                }
+            }
+        }
+
+        function inputchange(e) {
+            var elem = e.target.closest('[inputchange]');
+            if (elem) {
+                let id = elem.id;
+                let name = document.getElementById(id+ '_inv');
+                name.innerHTML = elem.value;
+            }
+        }
+
+        function accordian(e) {
+            var elem = e.target.closest('[accordian]');
+            if (elem) {
+                let id = elem.id;
+                let uid = id.split('-');
+                let name = document.getElementById(uid[0] + '-parent');
+                if (name.style.opacity !== "0") {
+                    name.style.opacity = "0";
+                    name.style.maxHeight = "0";
+                } else {
+                    name.style.opacity = "1";
+                    name.style.maxHeight = "1000px";
+                }
+            }
+        }
+
+document.addEventListener('input', inputReserve);
+document.addEventListener('change', inputchange);
+document.addEventListener('click', accordian);
+
+    </script>
+</body>
+</html>
