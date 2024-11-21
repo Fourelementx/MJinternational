@@ -332,10 +332,18 @@
             padding: 3px 10px;
             border-radius: 3px;
             letter-spacing:1px;
-
+            font-weight: bold;
+            border: none;
         }
-        table{
-            border-spacing: 10px;
+        .bg-title{
+            border: none;
+            padding: 2px 0px;
+        }
+        
+        tr td{
+            border: 2px solid black;
+            padding: 2px 5px;
+            border-collapse: collapse;
         }
         .arrow{
             cursor: pointer;
@@ -445,7 +453,8 @@
         @media screen {
             table {
                 width: 400px;
-                display: none; 
+                border-collapse: collapse;
+                /* display: none;  */
             }
         }
         @media print {
@@ -455,6 +464,18 @@
 
             table {
                 display: block; 
+                border-collapse: collapse;
+                width: 400px;
+            }
+            td{
+                border: 2px solid black; 
+                padding: 2px 5px;
+            }
+            thead{
+                border-bottom: 20px solid transparent;
+            }
+            .bg-title{
+                padding-top: 10px;
             }
         }
 
@@ -574,15 +595,15 @@
     <table id="invoice" >
         <thead>
             <tr>
-                <td colspan="2" id="invoice-logo">
+                <th colspan="2" id="invoice-logo">
                     <h1>MJ</h1>
                     <small>International</small>
-                </td>
+                </th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="title-bg">SHIPPER</td>
+                <td class="bg-title"><span class="title-bg">SHIPPER</span></td>
             </tr>
             <tr>
                 <td><strong>Name: </strong></td>
@@ -605,7 +626,7 @@
                 <td id="shipper_address_inv"></td>
             </tr>
             <tr>
-                <td class="title-bg">CONSIGNEE</td>
+                <td class="bg-title"><span class="title-bg">CONSIGNEE</span></td>
             </tr>
             <tr>
                 <td><strong>Name: </strong></td>
@@ -640,7 +661,7 @@
                 <td id="consignee_address_inv"></td>
             </tr>
             <tr>
-                <td colspan="2" ><span class="title-bg">SHIPMENT DETAILS</span></td>
+                <td colspan="2" class="bg-title"><span class="title-bg">SHIPMENT DETAILS</span></td>
             </tr>
             <tr>
                 <td><strong>Service: </strong></td>
@@ -651,7 +672,7 @@
                 <td id="select_insurance_inv">No</td>
             </tr>
             <tr>
-                <td class="title-bg">DESCRIPTION</td>
+                <td class="bg-title"><span  class="title-bg">DESCRIPTION</span></td>
             </tr>
             <tr>
                 <td colspan="2" id="input_description_inv"></td>
@@ -701,7 +722,7 @@
                 }
             }
         }
-        
+
         function printBtn(e) {
             var elem = e.target.closest('#print-btn');
             if (elem) {
