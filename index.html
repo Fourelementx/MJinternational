@@ -738,8 +738,8 @@
         function printBtn(e) {
             var elem = e.target.closest('#print-btn');
             if (elem) {
-                window.location.href="https://median.dev/library-ready";
-                // gonative.share.sharePage();
+                // window.location.href="https://median.dev/library-ready";
+                gonative.share.sharePage();
                 elem.innerText="Printing";
                 window.print();
             }
