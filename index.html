@@ -62,7 +62,6 @@
          border: yellowgreen solid 1px;
          min-width: 240px;
          width: 70%;
-         margin-right: 10%;
         }
         .from-select{
          background-color: rgb(232, 242, 246); 
@@ -73,7 +72,6 @@
          border: yellowgreen solid 1px;
          min-width: 240px;
          width: 70%;
-         margin-right: 10%;
         }
         .from-title{
             font-weight: bold;
@@ -88,6 +86,9 @@
             padding: 8px 10px;
             width: 100%;
             margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         #from-name{
             display: flex;
@@ -145,6 +146,10 @@
             padding: 8px 10px;
             width: 100%;
             margin: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
         }
         #to-name{
             display: flex;
@@ -260,7 +265,7 @@
             width: 100%;
             margin: 10px 0;
         }
-        #details-content{
+        #discription-content{
             display: flex;
             width: 100%;
             justify-content: space-between;
@@ -303,10 +308,6 @@
             margin-bottom: 20px;
             box-shadow: inset 0px 0px 4px 0px grey;
         }
-        #invoice{
-            width: 400px;
-            display: none;
-        }
         #invoice-logo{
             text-align: center;
         }
@@ -336,6 +337,128 @@
         table{
             border-spacing: 10px;
         }
+        .arrow{
+            cursor: pointer;
+            transition: all 0.4s ease-in-out;
+        }
+        @media screen and (min-width: 426px) {
+            .full-w{
+                width: 89.2%;
+            }
+            .differ_name{
+                width: 35%;
+            }
+            #from-parent {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0px;
+            }
+            #from-name {
+                width: 50%;
+                justify-content: start;
+                gap: 35px;
+            }
+            #from-phone {
+                width: 50%;
+                justify-content: end;
+                gap: 31px;
+            }
+            #from-country {
+                margin: 5px 0;
+                width: 50%;
+                justify-content: end;
+                gap: 20px;
+            }
+            #from-address {
+                width: 100%;
+                justify-content: space-between;
+            }
+            #from-city {
+                width: 50%;
+                justify-content: start;
+                gap: 47px;
+            }
+            #to-parent {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0px;
+            }
+            #to-name {
+                width: 100%;
+                justify-content: start;
+                gap: 35px;
+            }
+            #to-city {
+                width: 50%;
+                justify-content: start;
+                gap: 47px;
+            }
+            #to-phone {
+                width: 50%;
+                justify-content: start;
+                gap: 31px;
+            }
+            #to-zip {
+                width: 50%;
+                justify-content: start;
+                gap: 14px;
+                margin: 5px 0;
+            }
+            #to-mobile {
+                width: 50%;
+                justify-content: end;
+                gap: 20px;
+            }
+            #to-country {
+                margin: 5px 0;
+                width: 50%;
+                justify-content: end;
+                gap: 20px;
+            }
+            #to-state {
+                width: 50%;
+                justify-content: end;
+                gap: 20px;
+            }
+            #to-address {
+                width: 100%;
+                justify-content: space-between;
+            }
+            #details {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0px;
+            }
+            #details-title {
+                width: 100%; 
+            }
+            #details-service {
+                width: 50%;
+                justify-content: start;
+            }
+            #details-insurance {
+                    width: 50%;
+                    justify-content: end;
+            }
+        }
+
+        @media screen {
+            table {
+                width: 400px;
+                display: none; 
+            }
+        }
+        @media print {
+            header, main {
+                display: none; 
+            }
+
+            table {
+                display: block; 
+            }
+        }
+
+
 
     </style>
 </head>
@@ -347,16 +470,17 @@
     <main>
         <section id="from" >   
             <div id="from-title" accordian>
-                SHIPPER
+                <span>SHIPPER</span>
+                <span class="arrow">︾</span>
             </div>  
             <div id="from-parent">  
             <div id="from-name">
                 <strong class="from-title">Name:</strong>
                 <input id="shipper_name" type="text" class="from-select" placeholder="Name..." inputReserve>
             </div>
-            <div id="from-address">
-                <strong class="from-title">Address:</strong>
-                <small id="shipper_address" contenteditable="true" data-placeholder="Address..." inputReserve></small>
+            <div id="from-phone">
+                <strong class="from-title">Phone:</strong>
+                <input id="shipper_phone" type="text" class="from-select" placeholder="Phone..." inputReserve>
             </div>
             <div id="from-city">
                 <strong class="from-title">City:</strong>
@@ -366,24 +490,21 @@
                 <strong class="from-title">Country:</strong>
                 <input id="shipper_country" type="text" class="from-select" placeholder="Country..." inputReserve>
             </div>
-            <div id="from-phone">
-                <strong class="from-title">Phone:</strong>
-                <input id="shipper_phone" type="text" class="from-select" placeholder="Phone..." inputReserve>
+            <div id="from-address">
+                <strong class="from-title">Address:</strong>
+                <small id="shipper_address" class="full-w" contenteditable="true" data-placeholder="Address..." inputReserve></small>
             </div>
             </div>
         </section>
         <section id="to" >   
             <div id="to-title" accordian>
-                CONSIGNEE
+                <span>CONSIGNEE</span>
+                <span class="arrow">︾</span>
             </div>
-            <div id="to-parent">  
+            <div id="to-parent"> 
             <div id="to-name">
                 <strong class="from-title">Name:</strong>
-                <input id="consignee_name" type="text" class="from-select" placeholder="Name..." inputReserve>
-            </div>
-            <div id="to-address">
-                <strong class="from-title">Address:</strong>
-                <small id="consignee_address" data-placeholder="Address..." contenteditable="true" inputReserve></small>
+                <input id="consignee_name" type="text" class="from-select differ_name" placeholder="Name..." inputReserve>
             </div>
             <div id="to-city">
                 <strong class="from-title">City:</strong>
@@ -397,17 +518,21 @@
                 <strong class="from-title">Phone:</strong>
                 <input id="consignee_phone" type="text" class="from-select" placeholder="Phone..." inputReserve>
             </div>
-            <div id="to-zip">
-                <strong class="from-title">ZIP Code:</strong>
-                <input id="consignee_zip" type="text" class="from-select" placeholder="Zip..." inputReserve>
-            </div>
             <div id="to-state">
                 <strong class="from-title">State:</strong>
                 <input id="consignee_state" type="text" class="from-select" placeholder="State..." inputReserve>
             </div>
+            <div id="to-zip">
+                <strong class="from-title">ZIP Code:</strong>
+                <input id="consignee_zip" type="text" class="from-select" placeholder="Zip..." inputReserve>
+            </div>
             <div id="to-mobile">
                 <strong class="from-title">Mobile:</strong>
                 <input id="consignee_mobile" type="text" class="from-select" placeholder="Mobile..." inputReserve>
+            </div>
+            <div id="to-address">
+                <strong class="from-title">Address:</strong>
+                <small id="consignee_address" class="full-w" data-placeholder="Address..." contenteditable="true" inputReserve></small>
             </div>
         </div>
         </section>
@@ -441,7 +566,7 @@
                 <textarea name="" rows="4" id="input_description" placeholder="Enter description here..." inputReserve></textarea>
             </div>
             <div id="print-btn">
-                <span onclick="window.print()">Print</span>
+                <span>Print</span>
             </div>
         </section>
     </main>
@@ -566,15 +691,25 @@
                 let uid = id.split('-');
                 let name = document.getElementById(uid[0] + '-parent');
                 if (name.style.opacity !== "0") {
+                    elem.querySelector(".arrow").style.transform = "rotate(180deg)";
                     name.style.opacity = "0";
                     name.style.maxHeight = "0";
                 } else {
+                    elem.querySelector(".arrow").style.transform = "rotate(0deg)";
                     name.style.opacity = "1";
                     name.style.maxHeight = "1000px";
                 }
             }
         }
+        
+        function printBtn(e) {
+            var elem = e.target.closest('#print-btn');
+            if (elem) {
+                window.print();
+            }
+        }   
 
+document.addEventListener('click', printBtn);
 document.addEventListener('input', inputReserve);
 document.addEventListener('change', inputchange);
 document.addEventListener('click', accordian);
