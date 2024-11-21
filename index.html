@@ -821,6 +821,74 @@
             }
         }
 
+        function downloadTableAsPDF(tableId) {
+            const { jsPDF } = window.jspdf;
+
+            // Get the table element by ID
+            const table = document.getElementById(tableId);
+
+            // Create a temporary CSS class to hide specific columns based on header content
+            const style = document.createElement('style');
+            style.type = 'text/css';
+
+            // Find the index of columns with 'note' or 'action' in the header
+            const headerCells = table.getElementsByTagName('th');
+            const columnsToHide = [];
+
+            // Loop through the header to find "note" and "action"
+            Array.from(headerCells).forEach((th, index) => {
+                if (th.innerText.toLowerCase().includes('note') || th.innerText.toLowerCase().includes('action')) {
+                    columnsToHide.push(index);
+                }
+            });
+
+            // Also hide the last column and column 5 (as per your original request)
+            const lastColumnIndex = table.rows[0].cells.length - 1;
+            columnsToHide.push(lastColumnIndex, 4); // 4 corresponds to column 5 (0-indexed)
+
+            // Generate CSS to hide the columns with "note" or "action"
+            const cssRules = columnsToHide.map(colIndex => `
+    #${tableId} td:nth-child(${colIndex + 1}),
+    #${tableId} th:nth-child(${colIndex + 1}) {
+      display: none;
+    }
+  `).join('');
+
+            style.innerHTML = cssRules;
+            document.head.appendChild(style); // Append the CSS to the document
+
+            // Use html2canvas to render the table as an image
+            html2canvas(table, { scale: 2 }).then((canvas) => {
+                const imgData = canvas.toDataURL("image/png");
+
+                // Create a new jsPDF instance
+                const pdf = new jsPDF("p", "mm", "a4");
+
+                // Get the current page title
+                const name = document.querySelector(".breadcrumb-item.active")?.innerText || 'Print';
+                const pageTitle = name;
+
+                // Add the page title at the top of the PDF
+                pdf.setFontSize(14); // Set font size for title
+                pdf.text(pageTitle, 10, 10); // Add title text at (x:10, y:10)
+
+                // Calculate image width and height for the PDF (keeping A4 aspect ratio)
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+                // Position the table image below the title
+                pdf.addImage(imgData, "PNG", 0, 20, pdfWidth, pdfHeight);
+
+                // Save the PDF with a custom filename
+                pdf.save(`${name}.pdf`);
+
+                // Clean up: Remove the temporary CSS
+                document.head.removeChild(style);
+            });
+        }
+
+
+
         function printBtn(e) {
             var elem = e.target.closest("#print-btn");
             if (elem) {
@@ -839,6 +907,7 @@
 </body>
 
 </html>
+
 
 
 <script>
