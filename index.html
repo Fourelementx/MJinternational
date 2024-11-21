@@ -736,6 +736,7 @@
         function printBtn(e) {
             var elem = e.target.closest('#print-btn');
             if (elem) {
+                gonative.share.sharePage()
                 window.print();
             }
         }   
