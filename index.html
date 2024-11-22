@@ -36,13 +36,6 @@
         main{
             padding: 0 20px;
         }
-        #from{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            padding-bottom: 5px;
-        }
         textarea{
             width:100%;
             background-color: rgb(232, 242, 246); 
@@ -53,17 +46,7 @@
             font-size: 14px;
             border: yellowgreen solid 1px;
         }
-        *[contenteditable]{
-         background-color: rgb(232, 242, 246); 
-         padding: 4px 6px;
-         border-radius: 3px;
-         margin-top: 3px;
-         font-size: 12px;
-         border: yellowgreen solid 1px;
-         min-width: 240px;
-         width: 70%;
-        }
-        .from-select{
+        *[contenteditable], .from-select{
          background-color: rgb(232, 242, 246); 
          padding: 4px 6px;
          border-radius: 3px;
@@ -77,67 +60,14 @@
             font-weight: bold;
             font-size: 14px;
         }
-        #from-title{
-            font-weight: bold;
-            font-size: 14px;
-            text-align: start;
-            background-color:  rgb(233, 73, 15);
-            color: white;
-            padding: 8px 10px;
-            width: 100%;
-            margin: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #from-name{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #from-address{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #from-city{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #from-country{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #from-phone{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #to{
+        #discription, #details, #from, #to{
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 6px;
             padding-bottom: 5px;
         }
-        #to-title{
+        #from-title, #to-title{
             font-weight: bold;
             font-size: 14px;
             text-align: start;
@@ -149,80 +79,28 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-
         }
-        #to-name{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #to-address{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #to-city{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #to-country{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #to-phone{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #to-zip{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #to-state{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #to-mobile{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #details{
+        #from-parent, #to-parent {
             display: flex;
             flex-direction: column;
-            align-items: center;
             gap: 6px;
-            padding-bottom: 5px;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            opacity: 1; 
+            max-height: 1000px;
+            overflow: hidden; 
+            transition: opacity 0.2s ease-in-out, max-height 0.4s ease-in-out;
         }
-        #details-title{
+        #details-service, #details-insurance, #from-name,#from-address, #from-city, #from-country, #from-phone, #to-name, #to-address, #to-city,#to-country, #to-phone, #to-zip, #to-state, #to-mobile, #discription-content{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 20px;
+            gap: 5px;
+        }
+        #details-title, #discription-title{
             font-weight: bold;
             font-size: 14px;
             text-align: start;
@@ -231,47 +109,6 @@
             padding: 8px 10px;
             width: 100%;
             margin: 10px 0;
-        }
-        #details-insurance{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #details-service{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
-        }
-        #discription{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
-            padding-bottom: 5px;
-        }
-        #discription-title{
-            font-weight: bold;
-            font-size: 14px;
-            text-align: start;
-            background-color:  rgb(233, 73, 15);
-            color: white;
-            padding: 8px 10px;
-            width: 100%;
-            margin: 10px 0;
-        }
-        #discription-content{
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 20px;
-            gap: 5px;
         }
         small[contenteditable="true"]:empty:before {
             content: attr(data-placeholder);
@@ -286,18 +123,6 @@
             gap: 30px;
             justify-content: center;
             align-items: center;
-        }
-        #from-parent, #to-parent {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-            opacity: 1; 
-            max-height: 1000px;
-            overflow: hidden; 
-            transition: opacity 0.2s ease-in-out, max-height 0.4s ease-in-out;
         }
         #print-btn{
             padding:3px 20px;
@@ -458,7 +283,7 @@
             }
         }
         @media print {
-            header, main {
+            header, main, footer {
                 display: none; 
             }
 
