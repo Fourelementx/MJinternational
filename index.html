@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice MJ</title>
-    <script type="text/javascript">
-        function median_library_ready() {}
-        var gonative_library_ready = median_library_ready;
-    </script>
     <style>
         * {
             margin: 0;
@@ -304,13 +300,12 @@
             transition: opacity 0.2s ease-in-out, max-height 0.4s ease-in-out;
         }
         #print-btn{
-            padding:8px 25px;
-            color: white;
-            font-weight:bold;
+            padding:3px 20px;
+            color: black;
             letter-spacing: 1px;
             border-radius: 4px;
-            background-color: rgb(233, 73, 15);
-            margin-bottom: 50px;
+            background-color: rgb(232, 242, 246);
+            margin-bottom: 20px;
             box-shadow: inset 0px 0px 4px 0px grey;
         }
         #invoice-logo{
@@ -695,8 +690,7 @@
         </tbody>
     </table>
 
-<script src="app/src/main/assets/GoNativeJSBridgeLibrary.js"></script>
-<script src="plugins/pluginName/src/main/assets"></script>
+
 
     <script>
         function inputReserve(e) {
@@ -742,10 +736,8 @@
         function printBtn(e) {
             var elem = e.target.closest('#print-btn');
             if (elem) {
-                // window.location.href="https://median.dev/library-ready";
-                gonative.share.sharePage();
-                elem.innerText="Printting";
                 window.print();
+                return;
             }
         }   
 
