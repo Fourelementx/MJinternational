@@ -2,7 +2,7 @@
 const CACHE_NAME = 'four-elements-dynamic-cache-v1';
 
 // Offline fallback page
-const OFFLINE_PAGE = '/index.html';
+const OFFLINE_PAGE = 'index.html';
 
 // Install event: cache the offline page initially
 self.addEventListener('install', (event) => {
