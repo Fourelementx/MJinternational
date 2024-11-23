@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice MJ</title>
+    <link rel="manifest" href="manifest.json" />
     <script>
         if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('https://fourelementx.github.io/MJinternational/sw.js')
+    navigator.serviceWorker.register('/sw.js')
       .then((registration) => {
       })
       .catch((error) => {
@@ -22,6 +23,12 @@
             padding: 0;
             box-sizing: border-box;
             font-family:  Helvetica, Arial, sans-serif;
+        }
+        #body {
+            background-image: url('bg.png');
+            background-repeat: repeat;
+            background-size: 150px auto; 
+            padding:0px 16px;
         }
         header{
             margin-top: 10px;
@@ -72,7 +79,8 @@
             font-weight: bold;
             font-size: 14px;
         }
-        #discription, #details, #from, #to{
+       
+        #discription, #details, #from, #to #payments{
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -104,7 +112,7 @@
             overflow: hidden; 
             transition: opacity 0.2s ease-in-out, max-height 0.4s ease-in-out;
         }
-        #details-service, #details-insurance, #from-name,#from-address, #from-city, #from-country, #from-phone, #to-name, #to-address, #to-city,#to-country, #to-phone, #to-zip, #to-state, #to-mobile, #discription-content{
+        #details-weight, #payments-recieve, #details-service, #details-insurance, #from-name,#from-address, #from-city, #from-country, #from-phone, #to-name, #to-address, #to-city,#to-country, #to-phone, #to-zip, #to-state, #to-mobile, #discription-content{
             display: flex;
             width: 100%;
             justify-content: space-between;
@@ -112,7 +120,7 @@
             font-size: 20px;
             gap: 5px;
         }
-        #details-title, #discription-title{
+        #details-title, #discription-title, #payments-title{
             font-weight: bold;
             font-size: 14px;
             text-align: start;
@@ -143,6 +151,7 @@
             letter-spacing: 1px;
             border-radius: 4px;
             background-color: rgb(233, 73, 15);
+            margin-top: 10px;
             margin-bottom: 20px;
             box-shadow: inset 0px 0px 4px 0px grey;
         }
@@ -188,6 +197,38 @@
             cursor: pointer;
             transition: all 0.4s ease-in-out;
         }
+        .hideSeek{
+            display:none;
+        }
+        #info{
+            display:none;
+            text-align:center;
+            position: absolute;
+            left: 0;
+            bottom: 10%;
+            transform: rotate(-180deg);
+            writing-mode: vertical-rl;
+            text-orientation:mixed;
+        }
+      
+        #date,#cv{
+                position:absolute;
+                top:90px;
+            }
+       #date:before{
+           left:10px;
+           content:'Date:';
+       }
+        #cv{
+            right:16px;
+            width:150px;
+            border-bottom:1px solid black;
+        }
+        #cv:before{
+            content:'CV:';
+            border-bottom:1px solid white;
+        }
+            
         @media screen and (min-width: 426px) {
             .full-w{
                 width: 89.2%;
@@ -271,6 +312,19 @@
                 width: 100%;
                 justify-content: space-between;
             }
+            #payments {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0px;
+            }
+            #payments-title {
+                width: 100%; 
+            }
+            #payments-recieve {
+                width: 50%;
+                justify-content: start;
+                gap: 15px;
+            }
             #details {
                 flex-direction: row;
                 flex-wrap: wrap;
@@ -282,10 +336,17 @@
             #details-service {
                 width: 50%;
                 justify-content: start;
+                gap: 23px;
+            }
+            #details-weight {
+                width: 50%;
+                justify-content: start;
+                gap: 26px;
+                margin: 5px 0;
             }
             #details-insurance {
-                    width: 50%;
-                    justify-content: end;
+                width: 50%;
+                justify-content: end;
             }
         }
 
@@ -297,6 +358,7 @@
             }
         }
         @media print {
+             
             header, main, footer {
                 display: none; 
             }
@@ -304,7 +366,7 @@
             table {
                 display: block; 
                 border-collapse: collapse;
-                width: 400px;
+                width: 100%;
             }
             td{
                 border: 2px solid black; 
@@ -316,13 +378,24 @@
             .bg-title{
                 padding-top: 10px;
             }
+            .company{
+                text-align:center;
+                border:none;
+            }
+            #company{
+                padding-top: 30px;
+            }
+            #info,#date,#cv{
+                display:block;
+            }
+            
         }
 
 
 
     </style>
 </head>
-<body>
+<body id="body">
     <header>
         <h1>MJ</h1>
         <small>International</small>
@@ -417,6 +490,19 @@
                     <option value="Yes">YES</option>
                 </select>
             </div>
+            <div id="details-weight">
+                <strong class="from-title">Weight:</strong>
+                <input id="detail_value" type="text" class="from-select" placeholder="Weight..." inputReserve>
+            </div>
+        </section>
+        <section id="payments">
+            <div id="payments-title">
+                RECIEVE PAYMENTS
+            </div>
+            <div id="payments-recieve">
+                <strong class="from-title">Payment:</strong>
+                <input id="payment_value" type="number" min="0" class="from-select" value="0" inputReserve>
+            </div>
         </section>
         <section id="discription">
             <div id="discription-title">
@@ -436,27 +522,13 @@
             <tr>
                 <th colspan="2" id="invoice-logo">
                     <h1>MJ</h1>
-                    <small>International<br></small>
-                        <small>  Cargo Services Gujarkhan</small>
+                    <small>INTERNATIONAL<br></small>
+                        <small>  CARGO SERVICES GUJARKHAN</small>
                 </th>
             </tr>
+            
         </thead>
         <tbody>
-            <tr>
-                <td class="bg-title"><span class="title-bg">COMPANY</span></td>
-            </tr>
-            <tr>
-                <td><strong>Name: </strong></td>
-                <td>Mohsin Jameel</td>
-            </tr>
-            <tr>
-                <td><strong>Phone:</strong></td>
-                <td>0348 2114596</td>
-            </tr>
-            <tr>
-                <td><strong>Address:</strong></td>
-                <td>London Plaza Shop No 4 Gujar Khan</td>
-            </tr>
             <tr>
                 <td class="bg-title"><span class="title-bg">SHIPPER</span></td>
             </tr>
@@ -527,9 +599,20 @@
                 <td id="select_insurance_inv">No</td>
             </tr>
             <tr>
-                <td class="bg-title"><span  class="title-bg">DESCRIPTION</span></td>
+                <td><strong>Weight:</strong></td>
+                <td id="detail_value_inv"></td>
             </tr>
             <tr>
+                <td colspan="2" class="bg-title"><span class="title-bg">RECIEVE PAYMENT</span></td>
+            </tr>
+            <tr>
+                <td><strong>Payment: </strong></td>
+                <td id="payment_value_inv">0</td>
+            </tr>
+            <tr class="desc hideSeek">
+                <td class="bg-title"><span  class="title-bg">DESCRIPTION</span></td>
+            </tr>
+            <tr class="desc hideSeek">
                 <td colspan="2" id="input_description_inv"></td>
             </tr>
             <tr>
@@ -542,12 +625,32 @@
                     be liable to pay more than $100 against this shipment. <br>&nbsp; <br> Sender Signature: _____________________.<br>&nbsp;
                 </span></td>
             </tr>
+            <tr>
+                <td colspan="2" id="company" class="company">Mohsin Jameel - 0348 2114596</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="company">London Plaza Shop No 4 Gujar Khan</td>
+            </tr>
         </tbody>
+        
     </table>
-
+    <div id="date"></div><div id="cv"></div>
+<p id="info">Software by Fourelementx - 03125659460</p>
 
 
     <script>
+    
+    function updateTime() {
+  const now = new Date();
+  const formattedTime = now.toLocaleTimeString(); // Format the time
+  document.getElementById('date').textContent = formattedTime;
+}
+
+// Call the function once to set the initial time
+updateTime();
+
+
+    
         function inputReserve(e) {
             var elem = e.target.closest('[inputReserve]');
             if (elem) {
@@ -556,7 +659,15 @@
                 if(elem.tagName === 'SMALL') {
                     name.innerHTML = elem.innerHTML;
                 }else{
-                    name.innerHTML = elem.value;
+                    if(id == "payment_value"){
+                        if(elem.value == ''){
+                            name.innerHTML = 0;   
+                        }else{
+                            name.innerHTML = elem.value;
+                        }
+                    }else{
+                        name.innerHTML = elem.value;
+                    }
                 }
             }
         }
@@ -567,6 +678,18 @@
                 let id = elem.id;
                 let name = document.getElementById(id+ '_inv');
                 name.innerHTML = elem.value;
+            }
+        }
+        function checkDesc(e){
+            var elem = e.target.closest("#input_description");
+            if(elem){
+                document.querySelectorAll('.desc').forEach(desc => {
+                    if(elem.value != ''){
+                        desc.classList.remove('hideSeek');
+                    }else{
+                        desc.classList.add('hideSeek');
+                    }
+                })
             }
         }
 
@@ -597,6 +720,7 @@
         }   
 
 document.addEventListener('click', printBtn);
+document.addEventListener('input', checkDesc);
 document.addEventListener('input', inputReserve);
 document.addEventListener('change', inputchange);
 document.addEventListener('click', accordian);

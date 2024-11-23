@@ -1,85 +1,76 @@
 {
-  "name": "FOUR Elements Portal",
-  "short_name": "Portal",
+  "name": "MJ International Receipt",
+  "short_name": "MJIR",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "icons": [
     {
-      "src": "logo-192.png",
+      "src": "/logo192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "logo-512.png",
+      "src": "/logo512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
   ],
-  "id": "https://portal.fourelementx.com/",
-  "description": "Four Elements client portal for all the app listed on website.",
+  "id": "https://mjinternational.fourelementx.com/",
+  "description": "Four Elements client portal for all the app listed on website and apps.",
   "dir": "auto",
   "scope": "/",
   "lang": "en",
- "display_override": [
-  "window-controls-overlay",
-  "standalone",
-  "browser"
-],"handle_links": "preferred"
-,
-
+  "display_override": ["window-controls-overlay", "standalone", "browser"],
+  "handle_links": "preferred",
   "orientation": "any",
-   "iarc_rating_id": "E",
-  "categories": [
-    "business",
-    "finance",
-    "productivity"
-  ],
+  "iarc_rating_id": "E",
+  "categories": ["business", "finance", "productivity"],
   "launch_handler": {
     "client_mode": ["navigate-existing", "auto"]
-},
-"screenshots" : [
-  {
-    "src": "screenshot1.jpg",
-    "sizes": "1080x2460",
-    "type": "image/jpeg"
   },
-  {
-    "src": "screenshot2.jpg",
-    "sizes": "1080x2460",
-    "type": "image/jpeg"
-  },
-  {
-    "src": "screenshot3.jpg",
-    "sizes": "1080x2460",
-    "type": "image/jpeg"
-  },
-  {
-    "src": "screenshot4.jpg",
-    "sizes": "1080x2460",
-    "type": "image/jpeg"
-  },
-  {
-    "src": "screenshot5.jpg",
-    "sizes": "1080x2460",
-    "type": "image/jpeg"
-  }
-],"prefer_related_applications": false,
+  "screenshots": [
+    {
+      "src": "screenshot1.jpg",
+      "sizes": "1080x2460",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "screenshot2.jpg",
+      "sizes": "1080x2460",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "screenshot3.jpg",
+      "sizes": "1080x2460",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "screenshot4.jpg",
+      "sizes": "1080x2460",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "screenshot5.jpg",
+      "sizes": "1080x2460",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "screenshot1.jpg",
+      "sizes": "1080x2460",
+      "type": "image/jpeg",
+      "form_factor":"wide"
+    }
+  ],
+  "prefer_related_applications": false,
 
-    "scope_extensions": [
-    {"origin": "https://portal.fourelementx.com/"}
-    ],
-    "related_applications": [
-        {
-            "platform": "windows",
-            "url": "https://portal.fourelementx.com/",
-            "id": "Portal.Fourelements"
-        }
-    ]
-
-
-
-
-    
+  "scope_extensions": [{ "origin": "https://mjinternational.fourelementx.com/" }],
+  "related_applications": [
+    {
+      "platform": "windows",
+      "url": "https://mjinternational.fourelementx.com/",
+      "id": "MJinternational.Fourelements"
+    }
+  ]
 }
