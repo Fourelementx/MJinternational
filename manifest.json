@@ -17,7 +17,7 @@
       "type": "image/png"
     }
   ],
-  "id": "https://fourelementx.github.io/",
+  "id": "https://fourelementx.github.io/MJinternational/",
   "description": "Four Elements client portal for all the app listed on website and apps.",
   "dir": "auto",
   "scope": "/",
@@ -65,11 +65,11 @@
   ],
   "prefer_related_applications": false,
 
-  "scope_extensions": [{ "origin": "https://fourelementx.github.io/" }],
+  "scope_extensions": [{ "origin": "https://fourelementx.github.io/MJinternational/" }],
   "related_applications": [
     {
       "platform": "windows",
-      "url": "https://fourelementx.github.io/",
+      "url": "https://fourelementx.github.io/MJinternational/",
       "id": "MJinternational.Fourelements"
     }
   ]
