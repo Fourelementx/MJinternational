@@ -712,6 +712,7 @@ updateTime();
         }
 
         function printBtn(e) {
+            updateTime();
             var elem = e.target.closest('#print-btn');
             if (elem) {
                 window.print();
